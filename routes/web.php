@@ -9,6 +9,7 @@
 //check out page -> delivery address for buyers
 
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +51,7 @@ Route::post('/logingin','UsersController@customerloggedin');
 Route::get('/signup','UsersController@signup');
 Route::post('/register_user','UsersController@register');
 Route::post('/user_login','UsersController@login');
-Route::get('/logout','UsersController@logout');
+Route::get('/logout','UsersController@logout')->name("logout");
 Route::get('/forgot-password','UsersController@forgotpassword')->name('forgot');
 Route::post('/forgot-password','UsersController@resetpassword')->name('password_reset');
 
@@ -73,7 +74,7 @@ Route::get('/adminlte/charts', function (){
 
 //Admin area
 Route::group(['middleware'=>['auth','admin']],function (){
-    Route::get('/admin','AdminController@index');
+    Route::get('/admin',[AdminController::class,"index"]);
     /// Category Area
     Route::get('/admin/categories','CategoriesController@index')->name('categories_index');
     Route::get('/admin/category/create','CategoriesController@create')->name('category_create');

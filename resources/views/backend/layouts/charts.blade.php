@@ -16,7 +16,8 @@ $data2 = [5,8,2,3,11,5];
             labels: ['jan', 'feb', 'mar', 'apr', 'may', 'june'],
             datasets: [{
                 label: '# of Votes',
-                data: '<?php echo $data1;?>',
+                {{--data: '<?php echo $data1;?>',--}}
+                data: [5,7,3,5,2,3],
                 backgroundColor: 'transparent',
                 borderColor: [
                     'rgba(0, 181, 204, 1)'
