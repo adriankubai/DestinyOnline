@@ -23,7 +23,7 @@ class CountriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -35,19 +35,17 @@ class CountriesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
 
+        $input_country = new Country();
+        $input_country->country_name = request('country_name');
+        $input_country->country_code = request('country_code');;
 
-
-$input_country = new Country();
-$input_country->country_name = request('country_name');
-$input_country->country_code = request('country_code');;
-
-$input_country->save();
-return redirect()->route('countries_index')->with('message',' country added successfully');
+        $input_country->save();
+        return redirect()->route('countries_index')->with('message',' country added successfully');
     }
 
     /**

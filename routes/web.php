@@ -11,6 +11,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CountriesController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +32,7 @@ Route::group(['middleware'=>'frontLogin'],function (){
     //checkout
     Route::get('/check-out','CheckOutController@index');
     Route::post('/submit-checkout','CheckOutController@submitcheckout');
-    Route::get('/order-review','OrdersController@index');
+    Route::get('/order-review',[OrdersController::class,"index"]);
     Route::post('/submit-order','OrdersController@order');
     Route::get('/cod','OrdersController@cod');
     Route::get('/paypal','OrdersController@paypal');
@@ -100,7 +102,7 @@ Route::group(['middleware'=>['auth','admin']],function (){
     Route::get('delete-coupon/{id}','CouponController@destroy');
 
     //countries area
-    Route::get('/admin/country/add','CountriesController@create')->name('country_create');
+    Route::get('/admin/country/add',[CountriesController::class,"create"])->name('country_create');
     Route::post('/admin/country/add','CountriesController@store')->name('country_store');
     Route::get('/admin/countries/list','CountriesController@index')->name('countries_index');
 
