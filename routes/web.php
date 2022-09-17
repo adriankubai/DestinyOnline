@@ -89,6 +89,7 @@ Route::group(['middleware'=>['auth','admin']],function (){
     Route::get('/admin/products','ProductsController@index')->name('products_index');
     Route::get('/admin/product/{id}/edit','ProductsController@edit')->name('product_edit');
     Route::put('/admin/product/{id}/update','ProductsController@update')->name('product_update');
+    Route::post('/admin/delete/product/{id}',[ProductsController::class,"destroy"])->name('product_delete');
 
     //coupons area
     Route::get('/admin/coupon','CouponController@index')->name('coupon_index');
