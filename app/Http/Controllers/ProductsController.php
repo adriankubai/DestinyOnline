@@ -54,7 +54,7 @@ class ProductsController extends Controller
             'p_colour'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
-            'image'=>'required|image|mimes:png,jpg,jpeg|max:1000',
+            'image'=>'required|mimes:png,jpg,jpeg|max:1000',
             'stock'=>'required|min:1',
         ]);
 //dd($request->all());

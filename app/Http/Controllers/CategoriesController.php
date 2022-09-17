@@ -37,7 +37,7 @@ class CategoriesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -50,7 +50,7 @@ class CategoriesController extends Controller
         $category->name = request('name');
         $category->save();
 //        Category::create($data);
-        return redirect()->route('category_index')->with('message','Added Success!');
+        return redirect()->route('categories_index')->with('message','Added Success!');
     }
 
     /**

@@ -10,6 +10,8 @@
 
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -73,17 +75,17 @@ Route::get('/adminlte/charts', function (){
 });
 
 //Admin area
-Route::group(['middleware'=>['auth']],function (){
+Route::group(['middleware'=>['auth','admin']],function (){
     Route::get('/admin',[AdminController::class,"index"]);
     /// Category Area
     Route::get('/admin/categories','CategoriesController@index')->name('categories_index');
-    Route::get('/admin/category/create','CategoriesController@create')->name('category_create');
+    Route::get('/admin/category/create',[CategoriesController::class,"create"])->name('category_create');
     Route::post('/admin/category/create','CategoriesController@store')->name('category_store');
     Route::post('/admin/category/{id}','CategoriesController@edit')->name('category_edit');
 
     /// Products Area
     Route::get('/admin/product/create','ProductsController@create')->name('products_create');
-    Route::post('/admin/product/create','ProductsController@store')->name('products_store');
+    Route::post('/admin/product/create',[ProductsController::class,"store"])->name('products_store');
     Route::get('/admin/products','ProductsController@index')->name('products_index');
     Route::get('/admin/product/{id}/edit','ProductsController@edit')->name('product_edit');
     Route::put('/admin/product/{id}/update','ProductsController@update')->name('product_update');
@@ -100,6 +102,11 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('/admin/country/add','CountriesController@create')->name('country_create');
     Route::post('/admin/country/add','CountriesController@store')->name('country_store');
     Route::get('/admin/countries/list','CountriesController@index')->name('countries_index');
+
+
+    Route::get('/admin/delete-image/{id}',[AdminController::class,"delete_image"])->name('images_delete');
+
+
 
 
 });
