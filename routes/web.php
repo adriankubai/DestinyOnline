@@ -73,7 +73,7 @@ Route::get('/adminlte/charts', function (){
 });
 
 //Admin area
-Route::group(['middleware'=>['auth','admin']],function (){
+Route::group(['middleware'=>['admin']],function (){
     Route::get('/admin',[AdminController::class,"index"]);
     /// Category Area
     Route::get('/admin/categories','CategoriesController@index')->name('categories_index');

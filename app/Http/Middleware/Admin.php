@@ -20,7 +20,7 @@ class Admin
         if (Auth::check() && Auth::user()->isAdmin()){
             return $next($request);
         }
-        return redirect('/admin')->with('errors','Sorry! you are not an admin');
+        return redirect()->back()->with('errors','Sorry! you are not an admin');
 
 
     }
