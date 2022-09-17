@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('title','Add Country')
 @section('content')
-    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('country_index')}}">Countries</a> <a href="{{route('country_create')}}" class="current">Add New Country</a> </div>
+    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('countries_index')}}">Countries</a> <a href="{{route('country_create')}}" class="current">Add New Country</a> </div>
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
