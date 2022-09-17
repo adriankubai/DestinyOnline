@@ -19,7 +19,7 @@
                         <div class="col-sm-5">
                             <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
                                 <a href="{{url('products/large',$detail_product->image)}}">
-                                    <img src="{{url('products/images',$detail_product->image)}}" alt="" id="dynamicImage"/>
+                                    <img src="{{url('products/images',$detail_product->image)}}" width="100%" alt="" id="dynamicImage"/>
                                 </a>
                             </div>
                         </div>
