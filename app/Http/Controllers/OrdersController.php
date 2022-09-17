@@ -66,14 +66,18 @@ class OrdersController extends Controller
     public function cod()
     {
         $user_order=Order::where('user_id',Auth::id())->first();
-        return view('frontend.payment.cod',compact('user_order'));
+        $session_id = Session::get('frontSession');
+        Cart::where('session_id',$session_id)->delete();
         Session::forget('frontsession');
+        return view('frontend.payment.cod',compact('user_order'));
     }
     public function paypal()
     {
         $order_totals = Session::get('new_order_total');
         $order_payment_method = Session::get('order_payment_method');
-
+        $session_id = Session::get('frontSession');
+        Cart::where('session_id',$session_id)->delete();
+        Session::forget('frontsession');
 //        $who_buying = DB::table('orders')->where(['grand_total',$order_totals],['payment_method',$order_payment_method])->get();
         $who_buying = Order::where('grand_total',$order_totals && 'payment_method',$order_payment_method)->get();
         return view('frontend.payment.paypal',compact('who_buying'));

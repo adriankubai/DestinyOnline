@@ -10,6 +10,7 @@
 
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\OrdersController;
@@ -33,7 +34,7 @@ Route::group(['middleware'=>'frontLogin'],function (){
     Route::get('/check-out','CheckOutController@index');
     Route::post('/submit-checkout','CheckOutController@submitcheckout');
     Route::get('/order-review',[OrdersController::class,"index"]);
-    Route::post('/submit-order','OrdersController@order');
+    Route::post('/submit-order',[OrdersController::class,"order"]);
     Route::get('/cod','OrdersController@cod');
     Route::get('/paypal','OrdersController@paypal');
 });
@@ -41,7 +42,7 @@ Route::group(['middleware'=>'frontLogin'],function (){
 
 ///// Cart Area /////////
 Route::post('/addToCart','CartController@addToCart')->name('addToCart');
-Route::get('/viewcart','CartController@index');
+Route::get('/viewcart',[CartController::class,"index"]);
 Route::get('/cart/deleteItem/{id}','CartController@deleteItem');
 Route::get('/cart/update-quantity/{id}/1','CartController@add');
 Route::get('/cart/update-quantity/{id}/-1','CartController@remove');
